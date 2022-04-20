@@ -1,0 +1,71 @@
+﻿/*generics*/
+	html{
+		overflow: hidden !important; /*hide the master overflow*/
+	}
+
+	body{
+		font-family: Roboto;
+	}
+	
+/*modals*/
+	.modal-mask{
+		position: fixed;
+		z-index: 100;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, .5);
+		transition: opacity .3s ease;
+	}
+
+	.modal-container{
+		width: 400px;/*master width of modals*/
+		margin: 40px auto 0;
+		padding: 20px 30px;
+		background-color: white;
+		border-radius: 2px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+		transition: all .3s ease;
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	.fade-enter, .fade-leave-to{
+		opacity: 0;
+	}
+
+/*icons*/
+	.dizagara-icon-gray{
+		color: #6b6b6b
+	}
+
+	.dizagara-margin-right{
+		margin-right: 3px;
+	}
+
+	.dizagara-margin-left{
+		margin-left: 3px;
+	}
+
+/*buttons*/
+	.dizagara-button-blue{
+		border: 1px solid #123464 !important;
+		background-color: #1975d2 !important;
+		color:white !important;
+	}
+
+	.dizagara-button-red{
+		border: 1px solid #912020 !important;
+		background-color: #ff5252 !important;
+		color:white !important;	
+	}
+
+/*headers*/
+	.dizagara-sub-header{
+		color: white; 
+		background-color: #192c45 !important;
+	}
+
+	.dizagara-outline-blue {
+		border: 1px solid #23426b !important;
+	}
