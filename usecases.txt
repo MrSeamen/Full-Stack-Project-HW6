@@ -1,0 +1,7 @@
+use cases:
+create account - if user clicks register, and creates account with a username and password, page redirects to login, and a success toastr notifies the user that account was created successfully
+invalid username - if user types an incorrect username, the app will stay on the login page, and an error toastr will notify the user that the username did not exist specifically
+successful login - if user refreshes page (to assure account is saved on database), and types correct username and password, app redirects to the dashboard page
+delete button - if user clicks the delete button on the dashboard page, account is deleted from the database, user is redirected to the login page, a success toastr notifies user that account was deleted successfully, and any attempts to login with the credentials created on uc90 will result with the same unsuccessful logins as described on uc91 and uc92
+lockout - if user fails to login 5 times, the login button will disppear from the page (using v-if bindables) and an error toastr will notify the user that too many login attempts were made
+authentication - all authentication must be done server side i.e. the password should not be checked on the client side, the provided username and password must be sent as params to the server, and the server should check if they are both correct, and return true/false tokens as necessary to the client
