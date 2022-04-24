@@ -46,9 +46,9 @@ export default {
     this.userId = this.$route.params.id
     // get icons (must be after stuff above)
     setTimeout(() => {
-			$('#headerIcon').addClass(references.getIcon('dashboard'))
-			$('#logoutIcon').addClass(references.getIcon('logout'))
-			$('#deleteIcon').addClass(references.getIcon('delete'))
+      $('#headerIcon').addClass(references.getIcon('dashboard'))
+      $('#logoutIcon').addClass(references.getIcon('logout'))
+      $('#deleteIcon').addClass(references.getIcon('delete'))
     }, 0)
   },
   // custom methods
@@ -57,7 +57,9 @@ export default {
     async deleteAccount () {
       // delete account
       // re-direct to login page
+      this.$router.push({ path: '/login' })
       // notify
+      toastr.info(`Deleted account out successfully!`, ``, { 'closeButton': true, positionClass: 'toast-bottom-right' })
     },
     // logout
     logout () {
