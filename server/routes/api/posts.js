@@ -49,23 +49,29 @@
     //delete user
         router.post('/deleteUser', async (req, res) => {
             //get params
+            let collection = await loadCollection(req.body.collection)
             //execute query
+            let query = { _id: new mongodb.ObjectID(req.params.id)}
             //return
-                res.status(201).send();
+                res.status(200).send();
         }); 
 
     //set user
         router.post('/setUser', async (req, res) => {
             //get params
+            let collection = await loadCollection(req.body.collection)
             //execute query
+            let query = { _id: new mongodb.ObjectID(req.params.id)}
             //return
-                res.status(201).send();
+                res.status(200).send();
             }); 
 
     //get access token
         router.post('/getToken', async (req, res) => {
             //get params
+            let collection = await loadCollection(req.body.collection)
             //execute query
+            let query = { _id: new mongodb.ObjectID(req.params.id)}
             //return
                 res.send(result);
         });

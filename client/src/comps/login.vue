@@ -2,7 +2,7 @@
 <v-app style='background-image: linear-gradient(to bottom right, #009dff, #003dbf);'>
 <!--dialogs-->
 	<transition name="fade">
-		<user 
+		<user
 			:data='user' 
 			:params='params'
 			v-if='dialogs.user.show'
