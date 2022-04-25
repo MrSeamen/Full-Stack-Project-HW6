@@ -80,17 +80,6 @@ router.post('/deleteDocument', async (req, res) => {
 });
 
 //customs
-//add user
-router.post('/addUser', async (req, res) => {
-    let collection = await loadCollection(req.body.collection);
-    await collection.insertOne({
-        username: req.body.item.params.data.username,
-        password: req.body.item.params.data.fruit,
-        createdAt: new Date()
-    })
-    res.status(201).send();
-})
-
 //delete user
 router.post('/deleteUser', async (req, res) => {
     //get params
@@ -104,21 +93,25 @@ router.post('/deleteUser', async (req, res) => {
 
 //set user
 router.post('/setUser', async (req, res) => {
-    //get params
     let collection = await loadCollection(req.body.collection);
-    let query = { _id: req.body.item._id };
-    //execute query
-    let user = await collection.find(query);
-    //return
-    res.send(user);
+    await collection.insertOne({
+        username: req.body.item.params.data.username,
+        password: req.body.item.params.data.fruit,
+        createdAt: new Date()
+    })
+    res.status(201).send();
 });
 
 //get access token
 router.post('/getToken', async (req, res) => {
     //get params
     let collection = await loadCollection(req.body.collection);
-    let query = { _id: req.body.item._id };
+    let query = { username: req.body.item.username, password: req.body.item.password };
     //execute query
+    let result = false;
+    if (await collection.findOne(query)) {
+        result = true;
+    }
     //return
     res.send(result);
 });

@@ -126,9 +126,23 @@
                 return;
               }
             //get access token
+            let username = this.username
+            let password = this.password
+            let accessToken = await bridge.getToken({
+              collection: 'users',
+              item: {
+                username: username,
+                password: password
+              }
+            });
             //notify based on the token
-            //redirect if successful token
+            if (accessToken) {
+              toastr.info(`Login Successful!`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
+              //redirect if successful token
               this.$router.push({ path: `/dashboard/${this.username}`});
+            } else {
+              toastr.info(`Login Failed! Wrong password or account does not exist.`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
+            }
           },
         //create account
           register(){
@@ -140,9 +154,11 @@
           },
         //dialogs
           async closeDialog(params, type){
-            if (params.action == 'submit') {
+            //check if username already exists
+            await bridge
+            if (params.action == 'submit') {//if user is submitting
               //save user to database
-              await bridge.addUser({
+              await bridge.setUser({
                 collection: `users`,
                 item: {
                   params
