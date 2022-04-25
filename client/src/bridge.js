@@ -67,6 +67,15 @@
             }
 
     //customs
+            static addUser(params) {
+                try {
+                    let command = 'adduser';
+                    return axios.post(url + command, params);
+                } catch (err) {
+                    reject(err);
+                }
+            }
+
         //delete
             static deleteUser(params){
                 try {

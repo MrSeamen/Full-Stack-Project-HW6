@@ -36,7 +36,7 @@
 				label='Password'
 				:rules='[validate.required]'
 				placeholder='Type password...'
-				v-model='fruit'
+				v-model='password'
 				type='password'
 				autocomplete="off"
 				background-color='light-blue lighten-5'
@@ -116,45 +116,6 @@
               $('#passwordIcon').addClass(references.getIcon('password'));
             }, 0);
             //CRUD examples (for reference only)
-            //create
-            try {
-              await bridge.setDocument({
-                collection: `users`,
-                item: {
-                  _id: `id01`,
-                  field01: `field01`,
-                  field02: `field02`,
-                  field03: `field03`
-                }
-              });
-              //read
-              let read = await bridge.getDocument({
-                collection: `users`,
-                item: {
-                  _id: `id01`
-                }
-              });
-              console.log(read);
-              //update
-              await bridge.setDocument({
-                collection: `users`,
-                item: {
-                  _id: `id01`,
-                  field01: `modedField01`,
-                  field02: `modedField02`,
-                  field03: `modedField03`
-                }
-              });
-              //delete
-              /*await bridge.deleteDocument({
-                collection: `users`,
-                item: {
-                  _id: `id01`
-                }
-              });*/
-            } catch (err) {
-              this.error = err.message;
-            }
           },
       //custom methods
         methods: {
@@ -179,9 +140,19 @@
           },
         //dialogs
           async closeDialog(params, type){
+            if (params.action == 'submit') {
+              //save user to database
+              await bridge.addUser({
+                collection: `users`,
+                item: {
+                  params
+                }
+              })
+              //notify
+              toastr.info(`Account Created!`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
+            }
+            //close dialog
             this.dialogs[type].show = false;
-            //save user to database
-            //notify
           }
         },
 }

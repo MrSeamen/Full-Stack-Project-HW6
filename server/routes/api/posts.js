@@ -80,11 +80,22 @@ router.post('/deleteDocument', async (req, res) => {
 });
 
 //customs
+//add user
+router.post('/addUser', async (req, res) => {
+    let collection = await loadCollection(req.body.collection);
+    await collection.insertOne({
+        username: req.body.item.params.data.username,
+        password: req.body.item.params.data.fruit,
+        createdAt: new Date()
+    })
+    res.status(201).send();
+})
+
 //delete user
 router.post('/deleteUser', async (req, res) => {
     //get params
     let collection = await loadCollection(req.body.collection);
-    let query = { _id: req.body.item._id };
+    let query = { _id: req.body.item.params.data._id };
     //execute query
     await collection.delete(query);
     //return
@@ -97,8 +108,9 @@ router.post('/setUser', async (req, res) => {
     let collection = await loadCollection(req.body.collection);
     let query = { _id: req.body.item._id };
     //execute query
+    let user = await collection.find(query);
     //return
-    res.status(201).send();
+    res.send(user);
 });
 
 //get access token

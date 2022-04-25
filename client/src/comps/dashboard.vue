@@ -56,8 +56,11 @@
 	//delete account
 		async deleteAccount(){	
 			//delete account
+      await bridge.deleteUser(data.userId);
 			//re-direct to login page
+      this.$router.push({ path: '/login' });
 			//notify
+      toastr.info(`Account Deleted!`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
 		},
 	//logout
 		logout(){
