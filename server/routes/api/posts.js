@@ -46,6 +46,12 @@
             }); 
 
 //customs
+    //get user
+        router.get('/', async (req, res) => {
+            let collection = await loadCollection(req.body.collection)
+            res.send(await collection.find({}))
+        })
+
     //delete user
         router.post('/deleteUser', async (req, res) => {
             //get params

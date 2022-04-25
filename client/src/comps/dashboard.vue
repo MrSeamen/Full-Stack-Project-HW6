@@ -59,7 +59,7 @@ export default {
       // re-direct to login page
       this.$router.push({ path: '/login' })
       // notify
-      toastr.info(`Deleted account out successfully!`, ``, { 'closeButton': true, positionClass: 'toast-bottom-right' })
+      toastr.info(`Deleted account successfully!`, ``, { 'closeButton': true, positionClass: 'toast-bottom-right' })
     },
     // logout
     logout () {

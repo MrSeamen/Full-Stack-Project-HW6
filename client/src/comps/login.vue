@@ -103,7 +103,7 @@ export default {
     }, 0)
     // CRUD examples (for reference only)
     // create
-    await bridge.setDocument({
+    /*await bridge.setDocument({
       collection: `users`,
       item: {
         _id: `id01`,
@@ -130,14 +130,13 @@ export default {
         field03: `modedField03`
       }
     })
-
     // delete
     await bridge.deleteDocument({
       collection: `users`,
       item: {
         _id: `id01`
       }
-    })
+    })*/
   },
   // custom methods
   methods: {
@@ -148,9 +147,16 @@ export default {
         return
       }
       // get access token
+
       // notify based on the token
-      // redirect if successful token
-      this.$router.push({ path: `/dashboard/${this.username}` })
+      //if () {
+        toastr.info(`Login successful!`, ``, { 'closeButton': true, positionClass: 'toast-bottom-right' })
+        // redirect if successful token
+        this.$router.push({ path: `/dashboard/${this.username}` })
+      /*} else {
+        toastr.info(`Login failed. Try again`, ``, { 'closeButton': true, positionClass: 'toast-bottom-right' })
+        data.loginAttempts += 1;
+      }*/
     },
     // create account
     register () {
@@ -164,6 +170,9 @@ export default {
     async closeDialog (params, type) {
       this.dialogs[type].show = false
       // save user to database
+      await bridge.setDocument({
+        collection: 'users',
+      })
       // notify
     }
   },
@@ -175,6 +184,7 @@ export default {
     validate: {
       required: a => !!a || 'Entry required!'
     },
+    loginAttempts: 0,
     params: {},
     dialogs: {
       user: {
