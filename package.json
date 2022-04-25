@@ -10,15 +10,15 @@
   "author": "Simon Wang",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jquery": "^3.6.0",
-    "mongodb": "^3.7.3",
-    "mongoose": "^6.3.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^6.3.0",
     "nodemailer": "^6.4.16",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "vue": "^3.2.33"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"

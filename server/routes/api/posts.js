@@ -39,7 +39,7 @@ async function loadCollection(collection){
     return client.db(database).collection(collection);
 }
 //generics
-/*//CRUD examples (for reference only)
+//CRUD examples (for reference only)
 //read
 router.post('/getDocument', async (req, res) => {
     //get params
@@ -108,7 +108,7 @@ router.post('/getToken', async (req, res) => {
     //return
     res.send(result);
 });
-*/
+*
 
 //export
 module.exports = router;
