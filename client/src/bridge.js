@@ -4,6 +4,33 @@
 
 //class
     class bridge {
+        static getPosts() {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let res = await axios.get(url);
+                    let data = res.data;
+                    resolve(
+                        data.map(post => ({
+                            ...post,
+                            createdAt: new Date(post.createAt)
+                        }))
+                    )
+                } catch (err) {
+                    reject(err);
+                }
+            })
+        }
+
+        static insertPost(text) {
+            return axios.post(url, {
+                text
+            });
+        }
+
+        static deletePost(id) {
+            return axios.delete(`${url}${id}`);
+        }
+
     //CRUD examples (for reference only)
         //create/update
             static setDocument(params){

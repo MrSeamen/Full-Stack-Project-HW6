@@ -8,6 +8,14 @@ let router = express.Router();
 let database = `demo`;
 let connectionString = 'mongodb://localhost:27017/' + database;
 
+//database
+async function loadCollection(collection){
+    let client = await mongodb.MongoClient.connect(connectionString, {
+        useNewUrlParser: true
+    });
+    return client.db(database).collection(collection);
+}
+
 //get posts
 router.get('/', async (req, res) => {
     let posts = await loadCollection('posts');
@@ -31,13 +39,7 @@ router.delete('/:_id', async (req, res) => {
     res.status(200).send();
 })
 
-//database
-async function loadCollection(collection){
-    let client = await mongodb.MongoClient.connect(connectionString, {
-        useNewUrlParser: true
-    });
-    return client.db(database).collection(collection);
-}
+
 //generics
 //CRUD examples (for reference only)
 //read
@@ -108,7 +110,7 @@ router.post('/getToken', async (req, res) => {
     //return
     res.send(result);
 });
-*
+
 
 //export
 module.exports = router;
