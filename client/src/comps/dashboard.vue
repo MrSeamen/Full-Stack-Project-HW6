@@ -33,6 +33,7 @@ import bridge from '../bridge.js'
 import references from '../utils/references.js'
 import toastr from 'toastr'
 
+
 // master
 export default {
 // name
@@ -56,6 +57,7 @@ export default {
     // delete account
     async deleteAccount () {
       // delete account
+      bridge.deleteUser()
       // re-direct to login page
       this.$router.push({ path: '/login' })
       // notify
