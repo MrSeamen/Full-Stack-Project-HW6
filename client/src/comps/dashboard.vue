@@ -55,6 +55,7 @@
 	methods: {
 	//delete account
 		async deleteAccount(){
+		  console.log(this.userId)
 			//delete account
       await bridge.deleteUser({
         collection: 'users',

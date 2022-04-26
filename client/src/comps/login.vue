@@ -148,6 +148,9 @@
             } else {
               this.loginAttempts++;
               toastr.info(`Login Failed! Wrong password or account does not exist.`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
+              if (this.loginAttempts >= 5) {
+                toastr.info(`Too many log in attempts! Try again later.`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
+              }
             }
           },
         //create account

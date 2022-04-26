@@ -84,7 +84,7 @@ router.post('/deleteDocument', async (req, res) => {
 router.post('/deleteUser', async (req, res) => {
     //get params
     let collection = await loadCollection(req.body.collection);
-    let query = { _id: req.body.item._id };
+    let query = { _id: new mongodb.ObjectID(req.body.item._id) };
     //execute query
     await collection.deleteOne(query);
     //return
@@ -111,9 +111,9 @@ router.post('/getToken', async (req, res) => {
     let result = false;
     let _id = null;
     try {
-        _id = (await collection.findOne(query))._id;
         if (await collection.findOne(query)) {
             result = true;
+            _id = (await collection.findOne(query))._id;
         }
     } catch (err) {
         _id = '';
