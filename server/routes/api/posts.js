@@ -109,9 +109,14 @@ router.post('/getToken', async (req, res) => {
     let query = { username: req.body.item.username, password: req.body.item.password };
     //execute query
     let result = false;
-    let _id = (await collection.findOne(query))._id;
-    if (await collection.findOne(query)) {
-        result = true;
+    let _id = null;
+    try {
+        _id = (await collection.findOne(query))._id;
+        if (await collection.findOne(query)) {
+            result = true;
+        }
+    } catch (err) {
+        _id = '';
     }
     //return
     res.send([result, _id]);
