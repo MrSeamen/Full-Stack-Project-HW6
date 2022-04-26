@@ -54,13 +54,18 @@
 //custom methods
 	methods: {
 	//delete account
-		async deleteAccount(){	
+		async deleteAccount(){
 			//delete account
-      await bridge.deleteUser(data.userId);
+      await bridge.deleteUser({
+        collection: 'users',
+        item: {
+          _id: this.userId
+        }
+      });
 			//re-direct to login page
       this.$router.push({ path: '/login' });
 			//notify
-      toastr.info(`Account Deleted!`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
+      toastr.info(`Account Deleted! Logged out autmatically.`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
 		},
 	//logout
 		logout(){

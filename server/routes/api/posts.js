@@ -84,11 +84,11 @@ router.post('/deleteDocument', async (req, res) => {
 router.post('/deleteUser', async (req, res) => {
     //get params
     let collection = await loadCollection(req.body.collection);
-    let query = { _id: req.body.item.params.data._id };
+    let query = { _id: req.body.item._id };
     //execute query
-    await collection.delete(query);
+    await collection.deleteOne(query);
     //return
-    res.status(201).send();
+    res.status(200).send();
 });
 
 //set user
@@ -109,11 +109,12 @@ router.post('/getToken', async (req, res) => {
     let query = { username: req.body.item.username, password: req.body.item.password };
     //execute query
     let result = false;
+    let _id = (await collection.findOne(query))._id;
     if (await collection.findOne(query)) {
         result = true;
     }
     //return
-    res.send(result);
+    res.send([result, _id]);
 });
 
 

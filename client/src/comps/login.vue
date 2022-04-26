@@ -47,6 +47,7 @@
 			<v-card-text v-on:keyup.enter='login()'>
 			<!--login button-->
 				<v-btn dense class='dizagara-button-blue'
+          v-if='loginAttempts < 5'
 					style='width: 100%; margin: 0px 0px 10px 0px; font-weight: bold;'
 					@click='login()'>
 					<span class='mdi' id='loginIcon'></span>
@@ -90,6 +91,8 @@
       data: () => ({
         username: '',
         password: '',
+        userID: ``,
+        loginAttempts: 0,
         user: {},
         validate: {
           required: a => !!a || 'Entry required!'
@@ -136,11 +139,14 @@
               }
             });
             //notify based on the token
-            if (accessToken) {
+            if (accessToken[0]) {
               toastr.info(`Login Successful!`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
               //redirect if successful token
-              this.$router.push({ path: `/dashboard/${this.username}`});
+              this.userID = accessToken[1];
+              console.log(accessToken);
+              this.$router.push({ path: `/dashboard/${accessToken[1]}`});
             } else {
+              this.loginAttempts++;
               toastr.info(`Login Failed! Wrong password or account does not exist.`, ``, {'closeButton': true, positionClass: 'toast-bottom-right'});
             }
           },
